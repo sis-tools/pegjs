@@ -21,8 +21,8 @@ PARSER_SRC_FILE     = $(SRC_DIR)/parser.pegjs
 PARSER_OUT_FILE     = $(LIB_DIR)/parser.js
 PARSER_OUT_FILE_NEW = $(LIB_DIR)/parser.js.new
 
-BROWSER_FILE_DEV = $(BROWSER_DIR)/peg-$(PEGJS_VERSION).js
-BROWSER_FILE_MIN = $(BROWSER_DIR)/peg-$(PEGJS_VERSION).min.js
+BROWSER_FILE_DEV = $(BROWSER_DIR)/peg.js
+BROWSER_FILE_MIN = $(BROWSER_DIR)/peg.min.js
 
 SPEC_SERVER_FILE      = $(SPEC_DIR)/server
 BENCHMARK_SERVER_FILE = $(BENCHMARK_DIR)/server
@@ -54,7 +54,6 @@ parser:
 
 	rm -f $(PARSER_OUT_FILE)
 
-	echo '/* eslint-env node, amd */'          >> $(PARSER_OUT_FILE)
 	echo '/* eslint-disable no-unused-vars */' >> $(PARSER_OUT_FILE)
 	echo                                       >> $(PARSER_OUT_FILE)
 	cat $(PARSER_OUT_FILE_NEW)                 >> $(PARSER_OUT_FILE)
