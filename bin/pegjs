@@ -96,7 +96,7 @@ function nextArg() {
 
 function readStream(inputStream, callback) {
   let input = "";
-  inputStream.on("data", (data) => { input += data; });
+  inputStream.on("data", data => { input += data; });
   inputStream.on("end", () => { callback(input); });
 }
 
@@ -172,7 +172,7 @@ while (args.length > 0 && isOption(args[0])) {
       }
       try {
         json = fs.readFileSync(args[0]);
-      } catch(e) {
+      } catch (e) {
         abort("Can't read from file \"" + args[0] + "\".");
       }
       addExtraOptions(options, json);
@@ -222,7 +222,6 @@ while (args.length > 0 && isOption(args[0])) {
         abort("Missing parameter of the --plugin option.");
       }
       id = /^(\.\/|\.\.\/)/.test(args[0]) ? path.resolve(args[0]) : args[0];
-      mod;
       try {
         mod = require(id);
       } catch (e) {
@@ -255,13 +254,13 @@ while (args.length > 0 && isOption(args[0])) {
 
 if (Object.keys(options.dependencies).length > 0) {
   if (options.format !== "amd" && options.format !== "commonjs" && options.format !== "umd") {
-      abort("Can't use the -d/--dependency option with the \"" + options.format + "\" module format.");
+    abort("Can't use the -d/--dependency option with the \"" + options.format + "\" module format.");
   }
 }
 
 if (options.exportVar !== null) {
   if (options.format !== "globals" && options.format !== "umd") {
-      abort("Can't use the -e/--export-var option with the \"" + options.format + "\" module format.");
+    abort("Can't use the -e/--export-var option with the \"" + options.format + "\" module format.");
   }
 }
 
@@ -307,7 +306,7 @@ if (outputFile === "-") {
   });
 }
 
-readStream(inputStream, (input) => {
+readStream(inputStream, input => {
   let source;
 
   try {
